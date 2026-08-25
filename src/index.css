@@ -98,26 +98,51 @@ body {
     }
   }
 
-  #window-controls {
-    @apply flex gap-2;
+.window-header {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
-    .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
-    }
+#window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
-    .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
-    }
+  margin-left: 15px;
+  margin-top: 10px;
+}
 
-    .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
-    }
-  }
+#window-controls > div {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
-  #window-header {
-    @apply flex items-center justify-between px-4 py-3 rounded-t-lg bg-gray-50 border-b border-gray-200 select-none text-sm text-gray-400;
-  }
+#window-controls .close {
+  background: #ff5f57;
+}
 
+#window-controls .minimize {
+  background: #febc2e;
+}
+
+#window-controls .maximize {
+  background: #28c840;
+}
+
+.window-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.terminal-body {
+  background: #1e1e1e;
+  color: white;
+  min-height: 400px;
+}
   #safari {
     @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
@@ -162,9 +187,8 @@ body {
     }
   }
 
-  #terminal {
-    @apply w-xl absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
-
+ #terminal {
+  @apply w-xl h-fit absolute top-32 left-1/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
     h2 {
       @apply font-bold text-sm text-center w-full;
     }
