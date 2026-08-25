@@ -101,29 +101,52 @@ const blogPosts = [
 
 const techStack = [
   {
+    category: "Languages",
+    items: ["Python", "Java", "TypeScript", "JavaScript"],
+  },
+  {
     category: "Frontend",
-    items: ["React.js", "Next.js", "TypeScript"],
-  },
-  {
-    category: "Mobile",
-    items: ["React Native", "Expo"],
-  },
-  {
-    category: "Styling",
-    items: ["Tailwind CSS", "Sass", "CSS"],
+    items: ["React", "Tailwind CSS"],
   },
   {
     category: "Backend",
-    items: ["Node.js", "Express", "NestJS", "Hono"],
+    items: ["Express", "FastAPI", "REST APIs"],
   },
   {
-    category: "Database",
-    items: ["MongoDB", "PostgreSQL"],
+    category: "Databases",
+    items: ["PostgreSQL", "MongoDB", "Prisma"],
+  },
+  {
+    category: "AI & Data",
+    items: [
+      "LLM Integration",
+      "Prompt Engineering",
+      "LangChain",
+      "FAISS",
+      "ChromaDB",
+      "Apache Kafka",
+    ],
+  },
+  {
+    category: "Cybersecurity",
+    items: [
+      "Burp Suite",
+      "Nmap",
+      "Metasploit",
+      "Windows MBox Viewer",
+      "OAuth 2.0",
+      "JWT",
+      "Prisma Cloud",
+    ],
   },
   {
     category: "Dev Tools",
-    items: ["Git", "GitHub", "Docker"],
+    items: ["Git", "GitHub", "Docker", "Chrome Extension APIs"],
   },
+  {
+  category: "Operating Systems",
+  items: ["Kali Linux", "Ubuntu", "Arch Linux"],
+},
 ];
 
 const socials = [
