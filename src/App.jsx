@@ -1,5 +1,6 @@
 
-import { Dock,Navbar, Welcome } from "./components";
+
+import { Dock,Navbar, Welcome, Home } from "./components";
 import { Finder, ImageFile, Resume, Safari, Terminal, TextFile, Contact } from "./windows";
 import gsap from "gsap";
 import { Draggable} from "gsap/Draggable";
@@ -17,6 +18,7 @@ const App = () => {
       <TextFile/>
       <ImageFile/>
       <Contact/>
+      <Home/>
     </main>
   );
 };

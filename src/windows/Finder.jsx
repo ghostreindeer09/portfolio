@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Search } from "lucide-react";
 import WindowControls from "./WindowControls";
 import WindowWrapper from "#hoc/WindowWrapper";
@@ -7,7 +8,8 @@ import clsx from "clsx";
 import useWindowStore from "../stores/window";
 
 const Finder = () => {
-    const { openWindow } = useWindowStore();
+  const { openWindow, windows } = useWindowStore();
+
   const {
     activeLocation,
     setActiveLocation,
@@ -15,27 +17,39 @@ const Finder = () => {
     history,
   } = useLocationStore();
 
- const openItem = (item) => {
-  // PDF → open Resume window
-  if (item.fileType === "pdf") {
-    openWindow("resume", item);
-    return;
-  }
+  // Project passed from Home.jsx
+  const finderData = windows.finder.data;
 
-  // Link → open external URL
-  if (item.kind === "link" && item.href) {
-    window.open(item.href, "_blank", "noopener,noreferrer");
-    return;
-  }
+  // When a project is opened from the desktop,
+  // make it the active Finder location.
+  useEffect(() => {
+    if (finderData) {
+      setActiveLocation(finderData);
+    }
+  }, [finderData, setActiveLocation]);
 
-  // Files → open the appropriate file window
-  if (item.kind === "file") {
-    openWindow(`${item.fileType}${item.kind}`, item);
-    return;
-  }
+  const openItem = (item) => {
+    // PDF → open Resume window
+    if (item.fileType === "pdf") {
+      openWindow("resume", item);
+      return;
+    }
 
-  console.log("Unknown item:", item);
-};
+    // Link → open external URL
+    if (item.kind === "link" && item.href) {
+      window.open(item.href, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Files → open appropriate file window
+    if (item.kind === "file") {
+      openWindow(`${item.fileType}${item.kind}`, item);
+      return;
+    }
+
+    console.log("Unknown item:", item);
+  };
+
   const renderList = (items = []) =>
     items.map((item) => (
       <li
@@ -91,7 +105,6 @@ const Finder = () => {
         </div>
 
         <div className="flex-1 flex flex-col">
-          {/* Navigation bar */}
           <div className="flex items-center gap-3 px-4 py-2 border-b">
             <button
               onClick={goBack}
@@ -106,7 +119,6 @@ const Finder = () => {
             </span>
           </div>
 
-          {/* Files / folders */}
           <ul className="flex-1 grid grid-cols-2 gap-8 p-6">
             {activeLocation?.children?.map((item) => (
               <li
