@@ -4,6 +4,16 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
 
+const windowSizes = {
+  finder: "w-[900px] h-[600px]",
+  resume: "w-[800px] h-[700px]",
+  safari: "w-[1000px] h-[650px]",
+  terminal: "w-[700px] h-[500px]",
+  txtfile: "w-[700px] h-[600px]",
+  imgfile: "w-[800px] h-[600px]",
+   contact: "w-[400px] h-[500px]",
+};
+
 const WindowWrapper = (Component, windowKey) => {
   const Wrapped = (props) => {
     const { windows, focusWindow } = useWindowStore();
@@ -41,19 +51,27 @@ const WindowWrapper = (Component, windowKey) => {
         el.style.display = "none";
       }
     }, [isOpen]);
-    useGSAP(() =>{
-        const el = ref.current;
-        if(!el) return;
-       const [instance] = Draggable.create(el, {onPress: () => focusWindow(windowKey)})
-       return () => instance.kill()
-    },[])
+
+    useGSAP(() => {
+      const el = ref.current;
+
+      if (!el) return;
+
+      const [instance] = Draggable.create(el, {
+        onPress: () => focusWindow(windowKey),
+      });
+
+      return () => instance.kill();
+    }, []);
 
     return (
       <section
         ref={ref}
         id={windowKey}
         style={{ zIndex }}
-        className="absolute"
+        className={`absolute ${
+          windowSizes[windowKey] ?? "w-[800px] h-[600px]"
+        }`}
         onMouseDown={() => focusWindow(windowKey)}
       >
         <Component {...props} />
