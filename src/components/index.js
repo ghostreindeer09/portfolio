@@ -3,6 +3,7 @@ import Welcome from "./welcome.jsx";
 import Dock from "./Dock.jsx";
 import Resume from "../windows/resume.jsx";
 import Home from "./Home.jsx";
+import Weather from "./Weather.jsx";
 
 export {
   Navbar,
@@ -10,4 +11,5 @@ export {
   Dock,
   Resume,
   Home,
+  Weather,
 };
